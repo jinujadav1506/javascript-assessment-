@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Bag</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <style>
+        .main {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .cart, .cart1, .cart2 {
+            padding-top: 20px;
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            align-items: center;
+        }
+        .img, .img1, .img2 {
+            height: 100px;
+            width: 100px;
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+        .img {
+            background-image: url('../image/style-blogs-the-gq-eye-common-project-sneakers.webp');
+        }
+        .img1 {
+            background-image: url('../image/0dbd46dcb34dc402f35390987fe05130.jpg');
+            margin-top: 30px;
+        }
+        .img2 {
+            background-image: url('../image/12158_57ef1eaa8c-a4248crc_1-rtail-big.jpg');
+            margin-top: 30px;
+        }
+        #click, .button {
+            height: 30px;
+            width: 40px;
+            border: none;
+            background-color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #one, .button {
+            height: 30px;
+            width: 40px;
+            border: none;
+        }
+        #two, .button {
+            height: 30px;
+            width: 40px;
+            border: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: white;
+            font-size: 15px;
+        }
+        .a {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: #d1d1d1;
+        }
+        .i {
+            background-color: #d1d1d1;
+        }
+    </style>
+</head>
+<body>
+    <table border="0" cellpadding="20px" cellspacing="2px" style="background-color:rgb(52, 212, 52);">
+        <tr>
+            <td>
+                <table border="0" cellpadding="20px" cellspacing="2px" style="background-color:white; border-radius:8px;">
+                    <tr>
+                        <div class="main">
+                            <tr><td><h1>Shopping Bag</h1></td></tr>
+                            <!-- cart.1 -->
+                            <tr>
+                                <td>
+                                    <div class="cart">
+                                        <button id="two" onclick="removeItem(this)"><i class="fa-solid fa-xmark"></i></button>
+                                        <button id="click" onclick="toggleHeart('color')"><i id="color" class="fa-regular fa-heart"></i></button>
+                                        <div class="img"></div>
+                                        <div class="data">Common Projects <br> Bball High <br> White</div>
+                                        <button id="one" onclick="updateQuantity('qty', 'price', 550, 1)">+</button>
+                                        <div id="qty">1</div>
+                                        <button id="one" onclick="updateQuantity('qty', 'price', 550, -1)">-</button>
+                                        <div id="price">$550</div>
+                                    </div>
+                                    <hr>
+                                </td>
+                            </tr>
+
+                            <!-- cart.2 -->
+                            <tr>
+                                <td>
+                                    <div class="cart1">
+                                        <button id="two" onclick="removeItem(this)"><i class="fa-solid fa-xmark"></i></button>
+                                        <button id="click" onclick="toggleHeart('color1')"><i id="color1" class="fa-regular fa-heart"></i></button>
+                                        <div class="img1"></div>
+                                        <div class="data1">Maison Margiela <br>Future Sneakers <br>White</div>
+                                        <button id="one" onclick="updateQuantity('qty1', 'price1', 870, 1)">+</button>
+                                        <div id="qty1">1</div>
+                                        <button id="one" onclick="updateQuantity('qty1', 'price1', 870, -1)">-</button>
+                                        <div id="price1">$870</div>
+                                    </div>
+                                    <hr>
+                                </td>
+                            </tr>
+
+                            <!-- cart.3 -->
+                            <tr>
+                                <td>
+                                    <div class="cart2">
+                                        <button id="two" onclick="removeItem(this)"><i class="fa-solid fa-xmark"></i></button>
+                                        <button id="click" onclick="toggleHeart('color2')"><i id="color2" class="fa-regular fa-heart"></i></button>
+                                        <div class="img2"></div>
+                                        <div class="data1">Our Legacy <br>Brushed Scarf <br>Brown</div>
+                                        <button id="one" onclick="updateQuantity('qty2', 'price2', 350, 1)">+</button>
+                                        <div id="qty2">1</div>
+                                        <button id="one" onclick="updateQuantity('qty2', 'price2', 350, -1)">-</button>
+                                        <div id="price2">$350</div>
+                                    </div>
+                                    <hr>
+                                </td>
+                            </tr>
+                        </div>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <script>
+        function updateQuantity(qtyId, priceId, price, delta) {
+            const qty = document.getElementById(qtyId);
+            const priceEl = document.getElementById(priceId);
+            let quantity = parseInt(qty.textContent);
+
+            quantity += delta;
+            if (quantity < 1) quantity = 1;
+
+            qty.textContent = quantity;
+            priceEl.textContent = `$${quantity * price}`;
+        }
+
+        function toggleHeart(id) {
+            const heart = document.getElementById(id);
+            if (heart.classList.contains('fa-regular')) {
+                heart.classList.remove('fa-regular');
+                heart.classList.add('fa-solid');
+                heart.style.color = "red";
+            } else {
+                heart.classList.remove('fa-solid');
+                heart.classList.add('fa-regular');
+                heart.style.color = "gray";
+            }
+        }
+
+        function removeItem(button) {
+            button.parentElement.remove();
+        }
+    </script>
+</body>
+</html>
